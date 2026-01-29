@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: smartresume-backend
+    env: python
+    region: frankfurt
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: AI_PROVIDER
+        value: gemini
+      - key: AI_MODEL
+        value: gemini-2.5-flash
+      - key: AI_MAX_TOKENS
+        value: 8192
+      - key: AI_TEMPERATURE
+        value: 0.3
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: false
+      - key: AI_API_KEY
+        sync: false  # À configurer manuellement dans le dashboard
+      - key: CORS_ORIGINS
+        sync: false  # À configurer avec l'URL du frontend
