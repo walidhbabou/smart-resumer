@@ -8,7 +8,7 @@ const Home: React.FC = () => {
   const [cvFile, setCvFile] = useState<File | null>(null);
   const [jobDescription, setJobDescription] = useState('');
 
-  const { mutate: analyzeCV, data, isLoading, error, reset } = useAnalyzeCV();
+  const { mutate: analyzeCV, data, isPending, error, reset } = useAnalyzeCV();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,13 +65,13 @@ const Home: React.FC = () => {
               <FileUpload
                 onFileSelect={setCvFile}
                 selectedFile={cvFile}
-                disabled={isLoading}
+                disabled={isPending}
               />
 
               <JobDescriptionInput
                 value={jobDescription}
                 onChange={setJobDescription}
-                disabled={isLoading}
+                disabled={isPending}
               />
 
               {/* Error Display */}
@@ -101,10 +101,10 @@ const Home: React.FC = () => {
               <div className="flex gap-4">
                 <button
                   type="submit"
-                  disabled={!isFormValid || isLoading}
+                  disabled={!isFormValid || isPending}
                   className="flex-1 btn-primary flex items-center justify-center"
                 >
-                  {isLoading ? (
+                  {isPending ? (
                     <>
                       <svg
                         className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
@@ -150,7 +150,7 @@ const Home: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleReset}
-                  disabled={isLoading}
+                  disabled={isPending}
                   className="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Reset
