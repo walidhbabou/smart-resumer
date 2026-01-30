@@ -9,6 +9,9 @@ import { AnalysisRequest, AnalysisResponse } from '@/types/analysis';
 // Get API URL from environment or use default
 const API_URL = import.meta.env.VITE_API_URL || 'https://smart-resumer.onrender.com';
 
+// Debug: Log the API URL being used
+console.log('API_URL configured:', API_URL);
+
 // Create axios instance with default config
 const apiClient = axios.create({
   baseURL: API_URL,
