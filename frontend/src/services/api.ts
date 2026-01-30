@@ -7,7 +7,7 @@ import axios from 'axios';
 import { AnalysisRequest, AnalysisResponse } from '@/types/analysis';
 
 // Get API URL from environment or use default
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_API_URL || 'https://smart-resumer.onrender.com';
 
 // Create axios instance with default config
 const apiClient = axios.create({
